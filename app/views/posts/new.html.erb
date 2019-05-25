@@ -2,11 +2,9 @@
 
 <%= render 'form', post: @post %>
 
-<form action = "php4.php" method = "post">
-    名前：<input type = "text" name = "name" >  
-    住所：<input type = "text" name = "address" >
-    電話：<input type = "text" name = "phone" >
-    email: <input type = "text" name = "email" > 
+<form action = "/posts" method = "post">
+    title：<input type = "text" name = "title" >
+    body：<input type = "text" name = "body" >
     <input type = "submit" value ="送信" >
 </form>
 <%= link_to 'Back', posts_path %>

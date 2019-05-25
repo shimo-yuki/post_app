@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery
 
   # GET /posts
   # GET /posts.json
@@ -26,8 +27,11 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
+    if params[:post].nil?
+      @post = Post.new(title: params[:title], body: params[:body])
+    else
+      @post = Post.new(post_params)
+    end
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
